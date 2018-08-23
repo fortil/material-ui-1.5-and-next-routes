@@ -6,11 +6,12 @@ Este proyecto tendrá las siguientes tecnologías:
 4 - Material UI, es una librería de diseño para usar el patrón de diseño de Meterial design.
 
 ## Estructura
+La estructura del proyecto será una estructura monorepo
 ```
 /
   package.json
   packages/
-    medical/
+    doctor/
       __test__/
       pages/
       components/
