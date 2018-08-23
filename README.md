@@ -11,6 +11,7 @@ Este proyecto tendrá las siguientes tecnologías:
   package.json
   packages/
     medical/
+      __test__/
       pages/
       components/
       redux/
@@ -19,6 +20,7 @@ Este proyecto tendrá las siguientes tecnologías:
       package.json
       next.config.js
     user/
+      __test__/
       pages/
       components/
       redux/
@@ -27,6 +29,7 @@ Este proyecto tendrá las siguientes tecnologías:
       package.json
       next.config.js
     core/
+      __test__/
       components/
       utils/
       package.json
