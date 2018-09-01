@@ -8366,7 +8366,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_jss_lib_JssProvider__ = __webpack_require__("../../node_modules/react-jss/lib/JssProvider.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_jss_lib_JssProvider___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_react_jss_lib_JssProvider__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__src_getPageContext__ = __webpack_require__("./src/getPageContext.js");
-var _jsxFileName = "C:\\Users\\user\\Documents\\DevHack\\progressus\\packages\\progressus-doctor\\pages\\_app.js";
+var _jsxFileName = "/Users/williampenagos/w/progressus/packages/progressus-doctor/pages/_app.js";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -8520,6 +8520,11 @@ var theme = Object(__WEBPACK_IMPORTED_MODULE_1__material_ui_core_styles__["creat
       light: __WEBPACK_IMPORTED_MODULE_3__material_ui_core_colors_green___default.a[300],
       main: __WEBPACK_IMPORTED_MODULE_3__material_ui_core_colors_green___default.a[500],
       dark: __WEBPACK_IMPORTED_MODULE_3__material_ui_core_colors_green___default.a[700]
+    },
+    typography: {
+      // In Japanese the characters are usually larger.
+      fontSize: 12,
+      fontFamily: ['Roboto', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', '"Helvetica Neue"', 'Arial', 'sans-serif', '"Apple Color Emoji"', '"Segoe UI Emoji"', '"Segoe UI Symbol"'].join(',')
     }
   }
 });

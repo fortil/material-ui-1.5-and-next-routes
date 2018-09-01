@@ -18,8 +18,6 @@ var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _styles = require('@material-ui/core/styles');
-
 var _Grid = require('@material-ui/core/Grid');
 
 var _Grid2 = _interopRequireDefault(_Grid);
@@ -145,7 +143,7 @@ var Login = function (_Component) {
           ),
           _react2.default.createElement(
             _Grid2.default,
-            { item: true, md: mdContent },
+            { item: true, md: mdContent, className: classes.contentInputs },
             _react2.default.createElement(
               _Grid2.default,
               { container: true, direction: 'column', alignItems: 'center', justify: 'center' },
@@ -160,39 +158,53 @@ var Login = function (_Component) {
               ),
               _react2.default.createElement(
                 _Grid2.default,
-                { item: true, xs: 12, className: classes.inputUserContainer },
-                _react2.default.createElement(_TextField2.default, { label: 'Usuario', className: classes.inputUser, onChange: this.handleChange('user') })
-              ),
-              _react2.default.createElement(
-                _Grid2.default,
-                { item: true, xs: 12, className: classes.inputPasswordContainer },
+                { item: true, xs: 12 },
                 _react2.default.createElement(
-                  _FormControl2.default,
-                  { className: (0, _classnames2.default)(classes.margin, classes.textField) },
+                  _Grid2.default,
+                  { container: true, direction: 'column' },
                   _react2.default.createElement(
-                    _InputLabel2.default,
-                    { htmlFor: 'password' },
-                    'Contrase\xF1a'
+                    _Grid2.default,
+                    { item: true, xs: 12, className: classes.inputUserContainer },
+                    _react2.default.createElement(_TextField2.default, {
+                      label: 'Usuario',
+                      className: (0, _classnames2.default)(classes.margin, classes.textField),
+                      onChange: this.handleChange('user'),
+                      fullWidth: true
+                    })
                   ),
-                  _react2.default.createElement(_Input2.default, {
-                    id: 'password',
-                    type: this.state.showPassword ? 'text' : 'password',
-                    value: this.state.password,
-                    onChange: this.handleChange('password'),
-                    endAdornment: _react2.default.createElement(
-                      _InputAdornment2.default,
-                      { position: 'start' },
+                  _react2.default.createElement(
+                    _Grid2.default,
+                    { item: true, xs: 12, className: classes.inputPasswordContainer },
+                    _react2.default.createElement(
+                      _FormControl2.default,
+                      { className: (0, _classnames2.default)(classes.margin, classes.textField) },
                       _react2.default.createElement(
-                        _IconButton2.default,
-                        {
-                          'aria-label': 'Toggle password visibility',
-                          onClick: this.handleClickShowPassword,
-                          onMouseDown: this.handleMouseDownPassword
-                        },
-                        this.state.showPassword ? _react2.default.createElement(_VisibilityOff2.default, null) : _react2.default.createElement(_Visibility2.default, null)
-                      )
+                        _InputLabel2.default,
+                        { htmlFor: 'password' },
+                        'Contrase\xF1a'
+                      ),
+                      _react2.default.createElement(_Input2.default, {
+                        id: 'password',
+                        type: this.state.showPassword ? 'text' : 'password',
+                        value: this.state.password,
+                        onChange: this.handleChange('password'),
+                        fullWidth: true,
+                        endAdornment: _react2.default.createElement(
+                          _InputAdornment2.default,
+                          { position: 'start' },
+                          _react2.default.createElement(
+                            _IconButton2.default,
+                            {
+                              'aria-label': 'Toggle password visibility',
+                              onClick: this.handleClickShowPassword,
+                              onMouseDown: this.handleMouseDownPassword
+                            },
+                            this.state.showPassword ? _react2.default.createElement(_VisibilityOff2.default, null) : _react2.default.createElement(_Visibility2.default, null)
+                          )
+                        )
+                      })
                     )
-                  })
+                  )
                 )
               ),
               _react2.default.createElement(
@@ -236,33 +248,4 @@ Login.defaultProps = {
   image: _react2.default.createElement('img', { src: "http://lorempixel.com/400/200", alt: 'PROGRESUS', style: { width: '100%' } })
 };
 
-var styles = function styles(theme) {
-  return {
-    paper: {
-      height: 140,
-      width: 100
-    },
-    control: {
-      padding: theme.spacing.unit * 2
-    },
-    image: {},
-    titleContainer: {},
-    title: {},
-    inputUserContainer: {},
-    inputUser: {},
-    inputPasswordContainer: {},
-    margin: {
-      margin: theme.spacing.unit
-    },
-    textField: {
-      flexBasis: 200
-    },
-    buttonContainer: {},
-    button: {}
-  };
-};
-
-exports.default = function () {
-  var stls = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : styles;
-  return (0, _styles.withStyles)(stls)(Login);
-};
+exports.default = Login;

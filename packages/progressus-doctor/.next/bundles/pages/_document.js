@@ -1671,7 +1671,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_next_document___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_next_document__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_styled_jsx_server__ = __webpack_require__("../../node_modules/styled-jsx/server.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_styled_jsx_server___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_styled_jsx_server__);
-var _jsxFileName = "C:\\Users\\user\\Documents\\DevHack\\progressus\\packages\\progressus-doctor\\pages\\_document.js";
+var _jsxFileName = "/Users/williampenagos/w/progressus/packages/progressus-doctor/pages/_document.js";
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
@@ -1730,7 +1730,7 @@ function (_Document) {
           fileName: _jsxFileName,
           lineNumber: 13
         }
-      }, "My page"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
+      }, "Progressus"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
         charSet: "utf-8",
         __source: {
           fileName: _jsxFileName,
@@ -1757,20 +1757,25 @@ function (_Document) {
           fileName: _jsxFileName,
           lineNumber: 22
         }
-      })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("body", {
+      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("style", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 27
+          lineNumber: 26
+        }
+      }, "\n          #__next { position: absolute; top: 0; bottom: 0; left: 0; right: 0; } html, body { height: 100%}\n          ")), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("body", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 30
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_next_document__["Main"], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 28
+          lineNumber: 31
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_next_document__["NextScript"], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 29
+          lineNumber: 32
         }
       })));
     }
@@ -1809,7 +1814,7 @@ MyDocument.getInitialProps = function (ctx) {
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Component, _extends({}, props, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 64
+          lineNumber: 67
         }
       }));
     };
@@ -1825,7 +1830,7 @@ MyDocument.getInitialProps = function (ctx) {
     styles: __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Fragment, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 79
+        lineNumber: 82
       }
     }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("style", {
       id: "jss-server-side" // eslint-disable-next-line react/no-danger
@@ -1835,7 +1840,7 @@ MyDocument.getInitialProps = function (ctx) {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 80
+        lineNumber: 83
       }
     }), __WEBPACK_IMPORTED_MODULE_3_styled_jsx_server___default()() || null)
   });

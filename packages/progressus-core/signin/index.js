@@ -3,7 +3,6 @@
 */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { withStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 import TextField from '@material-ui/core/TextField'
@@ -137,28 +136,4 @@ Registry.defaultProps = {
   image: <img src={"http://lorempixel.com/400/200"} alt="PROGRESUS" style={{ width: '100%' }} />
 }
 
-const styles = theme => ({
-  paper: {
-    height: 140,
-    width: 100,
-  },
-  control: {
-    padding: theme.spacing.unit * 2,
-  },
-  image: {},
-  titleContainer: {},
-  title: {},
-  inputUserContainer: {},
-  inputUser: {},
-  inputPasswordContainer: {},
-  margin: {
-    margin: theme.spacing.unit,
-  },
-  textField: {
-    flexBasis: 200,
-  },
-  buttonContainer: {},
-  button: {}
-})
-
-export default (stls = styles) => withStyles(stls)(Registry)
+export default Registry

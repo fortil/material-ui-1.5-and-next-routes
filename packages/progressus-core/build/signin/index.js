@@ -14,8 +14,6 @@ var _propTypes = require('prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _styles = require('@material-ui/core/styles');
-
 var _Grid = require('@material-ui/core/Grid');
 
 var _Grid2 = _interopRequireDefault(_Grid);
@@ -231,33 +229,4 @@ Registry.defaultProps = {
   image: _react2.default.createElement('img', { src: "http://lorempixel.com/400/200", alt: 'PROGRESUS', style: { width: '100%' } })
 };
 
-var styles = function styles(theme) {
-  return {
-    paper: {
-      height: 140,
-      width: 100
-    },
-    control: {
-      padding: theme.spacing.unit * 2
-    },
-    image: {},
-    titleContainer: {},
-    title: {},
-    inputUserContainer: {},
-    inputUser: {},
-    inputPasswordContainer: {},
-    margin: {
-      margin: theme.spacing.unit
-    },
-    textField: {
-      flexBasis: 200
-    },
-    buttonContainer: {},
-    button: {}
-  };
-};
-
-exports.default = function () {
-  var stls = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : styles;
-  return (0, _styles.withStyles)(stls)(Registry);
-};
+exports.default = Registry;

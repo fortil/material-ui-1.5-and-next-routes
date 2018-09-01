@@ -4,7 +4,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import { withStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 import TextField from '@material-ui/core/TextField'
@@ -56,35 +55,45 @@ class Login extends Component {
       <Paper className={classes.paper} elevation={elevation}>
         <Grid container direction="row" alignItems="center" justify="center">
           <Grid item md={mdImage} className={classes.image}>{image}</Grid>
-          <Grid item md={mdContent}>
+          <Grid item md={mdContent} className={classes.contentInputs}>
             <Grid container direction="column" alignItems="center" justify="center">
               <Grid item xs={12} className={classes.titleContainer}>
                 <Typography variant="title" className={classes.title}>Inicio Sesión</Typography>
               </Grid>
-              <Grid item xs={12} className={classes.inputUserContainer}>
-                <TextField label="Usuario" className={classes.inputUser} onChange={this.handleChange('user')} />
-              </Grid>
-              <Grid item xs={12} className={classes.inputPasswordContainer}>
-                <FormControl className={classNames(classes.margin, classes.textField)}>
-                  <InputLabel htmlFor="password">Contraseña</InputLabel>
-                  <Input
-                    id="password"
-                    type={this.state.showPassword ? 'text' : 'password'}
-                    value={this.state.password}
-                    onChange={this.handleChange('password')}
-                    endAdornment={
-                      <InputAdornment position="start">
-                        <IconButton
-                          aria-label="Toggle password visibility"
-                          onClick={this.handleClickShowPassword}
-                          onMouseDown={this.handleMouseDownPassword}
-                        >
-                          {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                      </InputAdornment>
-                    }
-                  />
-                </FormControl>
+              <Grid item xs={12}>
+                <Grid container direction="column">
+                  <Grid item xs={12} className={classes.inputUserContainer}>
+                    <TextField
+                      label="Usuario" 
+                      className={classNames(classes.margin, classes.textField)}
+                      onChange={this.handleChange('user')}
+                      fullWidth={true}
+                    />
+                  </Grid>
+                  <Grid item xs={12} className={classes.inputPasswordContainer}>
+                    <FormControl className={classNames(classes.margin, classes.textField)}>
+                      <InputLabel htmlFor="password">Contraseña</InputLabel>
+                      <Input
+                        id="password"
+                        type={this.state.showPassword ? 'text' : 'password'}
+                        value={this.state.password}
+                        onChange={this.handleChange('password')}
+                        fullWidth={true}
+                        endAdornment={
+                          <InputAdornment position="start">
+                            <IconButton
+                              aria-label="Toggle password visibility"
+                              onClick={this.handleClickShowPassword}
+                              onMouseDown={this.handleMouseDownPassword}
+                            >
+                              {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
+                            </IconButton>
+                          </InputAdornment>
+                        }
+                      />
+                    </FormControl>
+                  </Grid>
+                </Grid>
               </Grid>
               <Grid item xs={12} className={classes.buttonContainer}>
                 <Button variant="contained" color="primary" className={classes.button} onClick={this.handleSubmit}>
@@ -117,28 +126,4 @@ Login.defaultProps = {
   image: <img src={"http://lorempixel.com/400/200"} alt="PROGRESUS" style={{ width: '100%' }} />
 }
 
-const styles = theme => ({
-  paper: {
-    height: 140,
-    width: 100,
-  },
-  control: {
-    padding: theme.spacing.unit * 2,
-  },
-  image: {},
-  titleContainer: {},
-  title: {},
-  inputUserContainer: {},
-  inputUser: {},
-  inputPasswordContainer: {},
-  margin: {
-    margin: theme.spacing.unit,
-  },
-  textField: {
-    flexBasis: 200,
-  },
-  buttonContainer: {},
-  button: {}
-})
-
-export default (stls = styles) => withStyles(stls)(Login)
+export default Login
