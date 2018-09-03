@@ -1,48 +1,64 @@
 const fs = require('fs')
 const { exec } = require('child_process')
 const path = require('path')
+const BASE_DIR = 'src'
+const rmraf = require('rimraf')
 
-let dirs = fs.readdirSync('./')
-dirs = dirs.filter(dir => (
-  fs.lstatSync(dir).isDirectory() && !['node_modules', 'build', '__test__', 'utils', '.git'].includes(dir)
+let dirsAndFiles = (fs.readdirSync(path.join(__dirname, 'src')))
+  .filter(dir => !['node_modules', 'build', '__test__', '.git', '.DS_Store'].includes(dir))
+  .map(d => path.join(__dirname, BASE_DIR, d))
+
+let dirs = dirsAndFiles.filter(dir => (
+  fs.lstatSync(dir).isDirectory()
 ))
 
-let files = []
-for (let idx = 0; idx < dirs.length; idx++) {
-  let dir = fs.readdirSync(`./${dirs[idx]}`)
-  dir = dir.map(d => path.join(dirs[idx], d))
-  files = files.concat(dir)
-}
+let files = dirsAndFiles.filter(p => !fs.lstatSync(p).isDirectory())
 
-for (let id = 0; id < files.length; id++) {
-  const file = path.join(__dirname, files[id])
-  const buildFileDir = path.join(__dirname, 'build', path.dirname(files[id]))
-  const buildFile = path.join(__dirname, 'build', files[id])
-
-  if (!fs.existsSync(buildFileDir)) {
-    fs.mkdirSync(buildFileDir)
-  }
-
-  exec(`babel --plugins babel-plugin-transform-react-jsx ${file} -o ${buildFile}`, (err, stdout, stderr) => {
-    if (err) {
-      console.log(`Error`, err)
-      return;
+function foundFilesIntoDirs(dir) {
+  let directories = fs.readdirSync(dir)
+  directories.map(d => path.join(dir, d)).forEach(p => {
+    if (fs.lstatSync(p).isDirectory()) {
+      foundFilesIntoDirs(p)
+    } else {
+      files.push(p)
     }
-    // the *entire* stdout and stderr (buffered)
-    console.log(`stdout: ${stdout}`);
-    console.log(`stderr: ${stderr}`);
   })
 }
+for (let idx = 0; idx < dirs.length; idx++) {
+  foundFilesIntoDirs(dirs[idx])
+}
 
-const indexFile = path.join(__dirname, 'index.js')
-const indexBuildFile = path.join(__dirname, 'build', 'index.js')
+const buildDir = path.join(__dirname, 'build')
 
-exec(`babel --plugins babel-plugin-transform-react-jsx ${indexFile} -o ${indexBuildFile}`, (err, stdout, stderr) => {
-  if (err) {
-    console.log(`Error`, err)
-    return;
+if (fs.existsSync(buildDir)) {
+  rmraf(buildDir, continueFn)
+} else {
+  continueFn()
+}
+
+function continueFn() {
+  if (!fs.existsSync(buildDir)) {
+    fs.mkdirSync(buildDir)
   }
-  // the *entire* stdout and stderr (buffered)
-  console.log(`stdout: ${stdout}`);
-  console.log(`stderr: ${stderr}`);
-})
+  
+  for (let id = 0; id < files.length; id++) {
+    const originPathFile = files[id]
+    const file = files[id].substring(files[id].indexOf(`${BASE_DIR}/`), files[id].length).replace(`${BASE_DIR}/`, '')
+    const fileName = path.basename(file)
+    const pathName = path.dirname(file)
+    const buildFileDir = path.join(buildDir, pathName)
+    const buildFile = path.join(buildFileDir, fileName)
+  
+    if (!fs.existsSync(buildFileDir)) {
+      fs.mkdirSync(buildFileDir)
+    }
+    exec(`./node_modules/.bin/babel --plugins babel-plugin-transform-react-jsx ${originPathFile} -o ${buildFile}`, (err, stdout, stderr) => {
+      if (err) {
+        console.log('========================ERROR========================');
+        console.log(err)
+        console.log('=====================================================');
+        return;
+      }
+    })
+  }
+}

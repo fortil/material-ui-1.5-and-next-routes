@@ -88,6 +88,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_jss_lib_JssProvider__ = __webpack_require__("react-jss/lib/JssProvider");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_jss_lib_JssProvider___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_react_jss_lib_JssProvider__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__src_getPageContext__ = __webpack_require__("./src/getPageContext.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_progressus_core_build_redux_width__ = __webpack_require__("progressus-core/build/redux/width");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_progressus_core_build_redux_width___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_progressus_core_build_redux_width__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_react_redux__ = __webpack_require__("react-redux");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_react_redux___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_react_redux__);
 var _jsxFileName = "/Users/williampenagos/w/progressus/packages/progressus-doctor/pages/_app.js";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -105,6 +109,8 @@ function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) ===
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+
 
 
 
@@ -149,46 +155,53 @@ function (_App) {
     value: function render() {
       var _props = this.props,
           Component = _props.Component,
-          pageProps = _props.pageProps;
+          pageProps = _props.pageProps,
+          reduxStore = _props.reduxStore;
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_next_app__["Container"], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 27
+          lineNumber: 31
+        }
+      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_react_redux__["Provider"], {
+        store: reduxStore,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 32
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_react_jss_lib_JssProvider___default.a, {
         registry: this.pageContext.sheetsRegistry,
         generateClassName: this.pageContext.generateClassName,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 29
+          lineNumber: 34
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__material_ui_core_styles__["MuiThemeProvider"], {
         theme: this.pageContext.theme,
         sheetsManager: this.pageContext.sheetsManager,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 35
+          lineNumber: 40
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__material_ui_core_CssBaseline___default.a, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 40
+          lineNumber: 45
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Component, _extends({
         pageContext: this.pageContext
       }, pageProps, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 43
+          lineNumber: 48
         }
-      })))));
+      }))))));
     }
   }]);
 
   return MyApp;
 }(__WEBPACK_IMPORTED_MODULE_1_next_app___default.a);
 
-/* harmony default export */ __webpack_exports__["default"] = (MyApp);
+/* harmony default export */ __webpack_exports__["default"] = (__WEBPACK_IMPORTED_MODULE_6_progressus_core_build_redux_width___default()(MyApp));
 
 /***/ }),
 
@@ -311,6 +324,13 @@ module.exports = require("next/app");
 
 /***/ }),
 
+/***/ "progressus-core/build/redux/width":
+/***/ (function(module, exports) {
+
+module.exports = require("progressus-core/build/redux/width");
+
+/***/ }),
+
 /***/ "react":
 /***/ (function(module, exports) {
 
@@ -322,6 +342,13 @@ module.exports = require("react");
 /***/ (function(module, exports) {
 
 module.exports = require("react-jss/lib/JssProvider");
+
+/***/ }),
+
+/***/ "react-redux":
+/***/ (function(module, exports) {
+
+module.exports = require("react-redux");
 
 /***/ })
 

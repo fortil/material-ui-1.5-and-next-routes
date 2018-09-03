@@ -8,7 +8,7 @@ var _login = require('./login');
 
 Object.defineProperty(exports, 'Login', {
   enumerable: true,
-  get: function get() {
+  get: function () {
     return _interopRequireDefault(_login).default;
   }
 });
@@ -17,7 +17,7 @@ var _signin = require('./signin');
 
 Object.defineProperty(exports, 'Sign', {
   enumerable: true,
-  get: function get() {
+  get: function () {
     return _interopRequireDefault(_signin).default;
   }
 });

@@ -1,12 +1,21 @@
 {
   "plugins": [
+    ["transform-runtime", {
+      "polyfill": false,
+      "regenerator": true
+    }],
     [
       "transform-class-properties",
       "transform-es2015-modules-commonjs"
     ]
   ],
   "presets": [
-    "env",
-    "react"
+    ["env", {
+      "targets": {
+        "node": "current"
+      }
+    }],
+    "react",
+    "stage-2"
   ]
 }
