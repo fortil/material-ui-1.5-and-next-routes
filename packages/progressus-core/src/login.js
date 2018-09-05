@@ -16,6 +16,8 @@ import IconButton from '@material-ui/core/IconButton'
 import Visibility from '@material-ui/icons/Visibility'
 import VisibilityOff from '@material-ui/icons/VisibilityOff'
 import Button from '@material-ui/core/Button'
+import { withStyles } from '@material-ui/core'
+import { login as styles } from './styles'
 
 class Login extends Component {
   state = {
@@ -126,4 +128,4 @@ Login.defaultProps = {
   image: <img src={"http://lorempixel.com/400/200"} alt="PROGRESUS" style={{ width: '100%' }} />
 }
 
-export default Login
+export default withStyles(styles)(Login)

@@ -4,44 +4,6 @@ import { Grid, withStyles } from '@material-ui/core'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 
-const loginStyles = theme => ({
-  root: {
-    flexGrow: 1,
-  },
-  fullScreen: {
-    width: '100%',
-    height: '100%',
-  },
-  paper: {
-    padding: theme.spacing.unit * 2,
-    height: '100%',
-    minWidth: '500px',
-    color: theme.palette.text.secondary
-  },
-  control: {
-    padding: theme.spacing.unit * 2,
-  },
-  image: {},
-  titleContainer: {},
-  title: {},
-  inputUserContainer: {
-  },
-  inputUser: {},
-  inputPasswordContainer: {
-    marginBottom: 40
-  },
-  margin: {
-    margin: theme.spacing.unit,
-  },
-  textField: {
-    flexBasis: 200,
-  },
-  buttonContainer: {},
-  button: {}
-})
-
-const Login = withStyles(loginStyles)(LoginCoreComponent)
-
 class LoginComponent extends Component {
   state = {}
   render() {
@@ -55,10 +17,10 @@ class LoginComponent extends Component {
     alignItems="center"
     >
       <Grid item xs={6}>
-        <Login
+        <LoginCoreComponent
           login={loginFn}
           image={<img src={"https://avatars2.githubusercontent.com/u/6068654?v=4"} alt="PROGRESUS" style={{ width: '100%' }} />}
-        ></Login>
+        ></LoginCoreComponent>
       </Grid>
     </Grid>
   }

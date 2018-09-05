@@ -20,7 +20,7 @@ class Container extends Component {
       })
       .then(usr => {
         if (typeof usr === 'object') {
-          return this.props.login(usr)
+          return this.props.login(usr, 'doctor')
         } else {
           const user = auth().currentUser
           return user.sendEmailVerification()
@@ -30,11 +30,17 @@ class Container extends Component {
         if (!resp) {
           return swal('Verifica el correo', 'Para poder iniciar sesión debe verificar su correo, revisa tu bandeja de entrada o en spam', 'warning')
         } else {
-          Router.push({ pathname: resp })
+          if (resp === '/sign') {
+            swal('No se encuentra registrado', 'Por favor registrese previamente en nuestra página', 'info')
+              .then(() => {
+                Router.push({ pathname: resp })
+              })
+          } else {
+            Router.push({ pathname: resp })
+          }
         }
       })
       .catch(error => {
-        console.log(error);
         if (error && error.code && error.message) {
           swal(error.code, error.message, 'warning')
         } else {
@@ -53,7 +59,7 @@ class Container extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  login: user => dispatch(loginApi(user))
+  login: (user, collection) => dispatch(loginApi(user, collection))
 })
 
 const mapStateToProps = (state = { user: USER_STATE_INITIAL }) => ({

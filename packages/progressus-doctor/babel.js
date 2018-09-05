@@ -5,6 +5,7 @@ const babelrc = {
   test: `
 {
   "plugins": [
+    "transform-decorators-legacy",
     [
       "transform-class-properties",
       "transform-es2015-modules-commonjs"
@@ -18,6 +19,9 @@ const babelrc = {
   `,
   dev: `
 {
+  "plugins": [
+    "transform-decorators-legacy"
+  ],
   "presets": [
     "next/babel"
   ]

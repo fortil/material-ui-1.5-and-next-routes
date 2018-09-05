@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import Registry from '../components/registry'
-import { Grid } from '@material-ui/core'
+import Layout from 'progressus-core/build/layout'
+import withUserCheck from 'progressus-core/build/withUserCheck'
 
+@withUserCheck
 class RegistryPage extends Component {
   render () {
     return (
-      <Grid container alignItems={'center'} style={{width: '100%', height: '100%'}}>
+      <Layout style={{width: '100%', height: '100%'}}>
         <Registry />
-      </Grid>
+      </Layout>
     )
   }
 }

@@ -64,6 +64,10 @@ var _Button = require('@material-ui/core/Button');
 
 var _Button2 = _interopRequireDefault(_Button);
 
+var _core = require('@material-ui/core');
+
+var _styles = require('./styles');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 class Login extends _react.Component {
@@ -210,4 +214,4 @@ Login.defaultProps = {
   image: _react2.default.createElement('img', { src: "http://lorempixel.com/400/200", alt: 'PROGRESUS', style: { width: '100%' } })
 };
 
-exports.default = Login;
+exports.default = (0, _core.withStyles)(_styles.login)(Login);

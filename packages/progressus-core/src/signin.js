@@ -13,10 +13,12 @@ import FormControl from '@material-ui/core/FormControl'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import RadioGroup from '@material-ui/core/RadioGroup'
 import Radio from '@material-ui/core/Radio'
+import { withStyles } from '@material-ui/core'
+import { sign as styles } from './styles'
 
 const fields = [
   { type: 'text', name: 'name', label: 'Nombres' , errorText: '', error: false, value: 'William' },
-  { type: 'text', name: 'lastName', label: 'Apellidos' , errorText: '', error: false, value: 'Penagos' },
+  { type: 'text', name: 'lastname', label: 'Apellidos' , errorText: '', error: false, value: 'Penagos' },
   { type: 'password', name: 'password', label: 'Contraseña' , errorText: '', error: false, value: 'wp0742226' },
   { type: 'password', name: 'passwordconfirmed', label: 'Confirmar contraseña' , errorText: '', error: false, value: 'wp0742226' },
   // { type: 'radio', name: 'type', options: [{ value: 'user', label: 'Consultante' }, { value: 'doctor', label: 'Psicólogo' }], value: '' },
@@ -138,4 +140,4 @@ Registry.defaultProps = {
   image: <img src={"http://lorempixel.com/400/200"} alt="PROGRESUS" style={{ width: '100%' }} />
 }
 
-export default Registry
+export default withStyles(styles)(Registry)

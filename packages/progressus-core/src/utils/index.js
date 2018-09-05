@@ -41,3 +41,31 @@ export const validation = (type = 'text', value, confirm) => {
   }
   return error
 }
+
+export function isObject(obj) {
+  if (obj instanceof Object && typeof obj === 'object' && !Array.isArray(obj)) {
+    return true
+  }
+  return false 
+}
+
+export function isEquivalent(a, b) {
+  const aProps = Object.getOwnPropertyNames(a)
+  const bProps = Object.getOwnPropertyNames(b)
+
+  if (aProps.length != bProps.length) {
+    return false
+  }
+
+  for (let i = 0; i < aProps.length; i++) {
+    const propName = aProps[i]
+    if (isObject(a[propName]) && isObject(b[propName])) {
+      isEquivalent(a[propName], b[propName])
+    } else {
+      if (a[propName] !== b[propName]) {
+        return false
+      }
+    }
+  }
+  return true
+}

@@ -50,12 +50,16 @@ var _Radio = require('@material-ui/core/Radio');
 
 var _Radio2 = _interopRequireDefault(_Radio);
 
+var _core = require('@material-ui/core');
+
+var _styles = require('./styles');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /* 
   @By William Penagos billalpeza@gmail.com
 */
-const fields = [{ type: 'text', name: 'name', label: 'Nombres', errorText: '', error: false, value: 'William' }, { type: 'text', name: 'lastName', label: 'Apellidos', errorText: '', error: false, value: 'Penagos' }, { type: 'password', name: 'password', label: 'Contraseña', errorText: '', error: false, value: 'wp0742226' }, { type: 'password', name: 'passwordconfirmed', label: 'Confirmar contraseña', errorText: '', error: false, value: 'wp0742226' },
+const fields = [{ type: 'text', name: 'name', label: 'Nombres', errorText: '', error: false, value: 'William' }, { type: 'text', name: 'lastname', label: 'Apellidos', errorText: '', error: false, value: 'Penagos' }, { type: 'password', name: 'password', label: 'Contraseña', errorText: '', error: false, value: 'wp0742226' }, { type: 'password', name: 'passwordconfirmed', label: 'Confirmar contraseña', errorText: '', error: false, value: 'wp0742226' },
 // { type: 'radio', name: 'type', options: [{ value: 'user', label: 'Consultante' }, { value: 'doctor', label: 'Psicólogo' }], value: '' },
 { type: 'email', name: 'email', label: 'Email', errorText: '', error: false, value: 'billalpeza@gmail.com' }];
 
@@ -188,4 +192,4 @@ Registry.defaultProps = {
   image: _react2.default.createElement('img', { src: "http://lorempixel.com/400/200", alt: 'PROGRESUS', style: { width: '100%' } })
 };
 
-exports.default = Registry;
+exports.default = (0, _core.withStyles)(_styles.sign)(Registry);

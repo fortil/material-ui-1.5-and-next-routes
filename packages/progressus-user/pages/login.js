@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
-import Login from 'progressus-core/login'
+import Login from '../components/login'
+import { Grid } from '@material-ui/core'
 
-class Login extends Component {
+class LoginPage extends Component {
   render () {
     return (
-      <div>
-        <Login login={console.log} />
-      </div>
+      <Grid container alignItems={'center'} style={{width: '100%', height: '100%'}}>
+        <Login />
+      </Grid>
     )
   }
 }
 
-export default Login
+export default LoginPage

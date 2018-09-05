@@ -40,7 +40,7 @@ class Container extends Component {
           throw null
         }
 
-        await this.props.setUser({...userRegistried, ...otherParams, type: 'doctor' })
+        await this.props.setUser({...userRegistried, ...otherParams }, 'doctor')
         await swal(
           'Registro exitoso', 
           'Se ha registrado exitosamente, lo invitamos a confirmar su email para tener un registro exitoso', 
@@ -65,14 +65,13 @@ class Container extends Component {
     return (
       <ComponentSign
         register={this.register}
-        // change={console.log}
       ></ComponentSign>
     )
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  setUser: user => dispatch(registerUserApi(user)),
+  setUser: (user, collection) => dispatch(registerUserApi(user, collection)),
   getUser: () => dispatch(getUserApi())
 })
 

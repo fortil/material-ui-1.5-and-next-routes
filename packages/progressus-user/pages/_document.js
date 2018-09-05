@@ -10,7 +10,7 @@ class MyDocument extends Document {
     return (
       <html lang="en" dir="ltr">
         <Head>
-          <title>My page</title>
+          <title>Progressus</title>
           <meta charSet="utf-8" />
           {/* Use minimum-scale=1 to enable GPU rasterization */}
           <meta
@@ -23,6 +23,9 @@ class MyDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
           />
+          <style>{`
+          #__next { position: absolute; top: 0; bottom: 0; left: 0; right: 0; } html, body { height: 100%}
+          `}</style>
         </Head>
         <body>
           <Main />

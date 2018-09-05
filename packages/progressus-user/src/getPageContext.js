@@ -12,12 +12,28 @@ const theme = createMuiTheme({
     primary: {
       light: purple[300],
       main: purple[500],
-      dark: purple[700],
+      dark: purple[700]
     },
     secondary: {
       light: green[300],
       main: green[500],
-      dark: green[700],
+      dark: green[700]
+    },
+    typography: {
+      // In Japanese the characters are usually larger.
+      fontSize: 12,
+      fontFamily: [
+        'Roboto',
+        '-apple-system',
+        'BlinkMacSystemFont',
+        '"Segoe UI"',
+        '"Helvetica Neue"',
+        'Arial',
+        'sans-serif',
+        '"Apple Color Emoji"',
+        '"Segoe UI Emoji"',
+        '"Segoe UI Symbol"',
+      ].join(','),
     },
   },
 });

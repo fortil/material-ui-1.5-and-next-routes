@@ -5,6 +5,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.dateUtc = dateUtc;
 exports.validateEmail = validateEmail;
+exports.isObject = isObject;
+exports.isEquivalent = isEquivalent;
 function dateUtc(date = new Date()) {
   function getDate(d) {
     return d.toUTCString();
@@ -48,3 +50,31 @@ const validation = exports.validation = (type = 'text', value, confirm) => {
   }
   return error;
 };
+
+function isObject(obj) {
+  if (obj instanceof Object && typeof obj === 'object' && !Array.isArray(obj)) {
+    return true;
+  }
+  return false;
+}
+
+function isEquivalent(a, b) {
+  const aProps = Object.getOwnPropertyNames(a);
+  const bProps = Object.getOwnPropertyNames(b);
+
+  if (aProps.length != bProps.length) {
+    return false;
+  }
+
+  for (let i = 0; i < aProps.length; i++) {
+    const propName = aProps[i];
+    if (isObject(a[propName]) && isObject(b[propName])) {
+      isEquivalent(a[propName], b[propName]);
+    } else {
+      if (a[propName] !== b[propName]) {
+        return false;
+      }
+    }
+  }
+  return true;
+}
