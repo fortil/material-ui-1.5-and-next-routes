@@ -23,8 +23,9 @@ const withUserCheck = WrappedComponent => {
         ctx.res.writeHead(302, { Location: `${collection}` })
         ctx.res.end()
       }
-      const isAuthenticated = checkIfUserIsAuthenticated(ctx)
-      return { ...wrappedComponentProps, isAuthenticated }
+      const auth = await checkIfUserIsAuthenticated(ctx)
+      const goToCheck = getRoutes(auth, ctx.pathname, collection)
+      return { ...wrappedComponentProps, goToCheck }
     }
 
     render = () => {
@@ -39,4 +40,24 @@ const withUserCheck = WrappedComponent => {
   return hoistStatics(ComponentWithUserCheck, WrappedComponent)
 }
 
+const Validations = {
+  'registry': ({ isUser, isVerified, isComplete }) => {
+    if (!isUser) {
+      return '/sign'
+    }
+    if (!isVerified) {
+      return '/login'
+    }
+    if (isComplete) {
+      return '/profile'
+    } else {
+      return
+    }
+  }
+}
+
+function getRoutes(auth, path, collection) {
+  const key = path.replace(`/${collection}/`, '')
+  return Validations[key](auth)
+}
 export default withUserCheck

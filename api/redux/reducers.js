@@ -1,10 +1,12 @@
 import { 
   USER as INITIAL_STATE_USER,
   ERROR as INITIAL_STATE_ERROR,
+  LOADING as INITIAL_STATE_LOADING,
 } from './states'
 import {
   SET_USER,
-  SET_USER_ERROR,
+  SET_LOADING,
+  REMOVE_LOADING,
   SET_ERROR,
   REMOVE_ERROR,
 } from './actionsType'
@@ -43,8 +45,26 @@ const ERROR = (state = INITIAL_STATE_ERROR, { type, error, place }) => {
   }
 }
 
+const LOADING = (state = INITIAL_STATE_LOADING, { type }) => {
+  switch (type) {
+    case SET_LOADING:
+      return {
+        ...state,
+        show: true
+      }
+    case REMOVE_LOADING:
+      return {
+        ...state,
+        show: false,
+      }
+    default:
+      return state
+  }
+}
+
 
 export default combineReducers({
   USER,
-  ERROR
+  ERROR,
+  LOADING,
 })

@@ -8,3 +8,7 @@ export const ERROR = {
   place: null,
   show: false
 }
+
+export const LOADING = {
+  show: false
+}

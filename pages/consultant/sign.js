@@ -15,6 +15,9 @@ class Sign extends Component {
     if (user && Object.keys(user).length) {
       if (user.emailVerified) {
         Router.push(`/${collection}/registry`)
+      } else {
+        swal('Por favor verifique el email', 'Por favor verifique el email para iniciciar sesión', 'success')
+        .then(() => Router.push(`/${collection}`))
       }
     }
     if (error && error.show && error.error) {

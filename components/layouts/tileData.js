@@ -11,7 +11,7 @@ import Crop from '@material-ui/icons/Crop'
 import Link from 'next/link'
 
 export const Doctor = props => (
-  <div style={props.user ? { display: 'none' } : {}}>
+  <div style={!props.user ? { display: 'none' } : {}}>
     <Link href={`/${props.collection}/sessions`}>
       <ListItem button disabled={!(props.user && props.user.complete)}>
         <ListItemIcon>
@@ -32,7 +32,7 @@ export const Doctor = props => (
 );
 
 export const Consultant = props => (
-  <div style={props.user ? { display: 'none' } : {}}>
+  <div style={!props.user ? { display: 'none' } : {}}>
     <Link href={`/${props.collection}/sessions`} >
       <ListItem button disabled={!(props.user && props.user.complete)}>
         <ListItemIcon>

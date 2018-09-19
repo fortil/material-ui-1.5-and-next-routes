@@ -10,12 +10,16 @@ import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import Typography from '@material-ui/core/Typography'
 import { layout as styles, drawerWidth } from '../styles/layout'
+import { USER as INITIAL_STATE_USER } from '#/api/redux/states'
 import Drawer from './drawer'
+import Loading from './loading'
+import { connect } from 'react-redux'
 
-class PermanentDrawer extends React.Component {
+class LayoutLayout extends React.Component {
   state = {
     auth: true,
     anchorEl: null,
+    showLoading: false,
   }
 
   handleMenu = event => {
@@ -24,6 +28,11 @@ class PermanentDrawer extends React.Component {
 
   handleClose = () => {
     this.setState({ anchorEl: null })
+  }
+  componentWillReceiveProps({ showLoading }) {
+    if (showLoading === false || showLoading === truw) {
+      this.setState({ showLoading })
+    }
   }
 
   render() {
@@ -77,6 +86,7 @@ class PermanentDrawer extends React.Component {
           <Drawer {...this.props} />
           <main className={classes.content}>
             {children}
+            {this.state.showLoading ? <div className={classes.spinner} ><Loading /></div> : ''}
           </main>
         </div>
       </div>
@@ -84,9 +94,14 @@ class PermanentDrawer extends React.Component {
   }
 }
 
-PermanentDrawer.propTypes = {
+LayoutLayout.propTypes = {
   classes: PropTypes.object.isRequired,
   children: PropTypes.node.isRequired
 }
 
-export default withStyles(styles, { name: 'LayoutStyle' })(PermanentDrawer);
+const mapStateToProps = ({ LOADING = { show: false }, USER = INITIAL_STATE_USER }) => ({
+  showLoading: LOADING.show,
+  user: USER.user,
+})
+
+export default connect(mapStateToProps)(withStyles(styles, { name: 'LayoutStyle' })(LayoutLayout))

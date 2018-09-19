@@ -1,8 +1,9 @@
 import {
   SET_USER,
-  SET_USER_ERROR,
+  SET_LOADING,
   SET_ERROR,
   REMOVE_ERROR,
+  REMOVE_LOADING,
 } from './actionsType'
 
 export function setUser(user) {
@@ -19,8 +20,15 @@ export function setError(error, place) {
     place
   }
 }
+
 export function removeError() {
   return {
     type: REMOVE_ERROR
+  }
+}
+
+export function setLoading(show) {
+  return {
+    type: show ? SET_LOADING : REMOVE_LOADING
   }
 }
