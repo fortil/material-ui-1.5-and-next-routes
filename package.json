@@ -1,25 +1,65 @@
 {
-  "name": "root",
-  "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
-  "scripts": {
-    "compile": "lerna run compile",
-    "clean": "lerna run clean",
-    "lint": "lerna run lint",
-    "test": "lerna run test",
-    "core": "node ./scripts/add-core.js",
-    "start": "node ./scripts/start-web.js",
-    "update-version": "lerna publish --skip-git --skip-npm --force-publish '*'",
-    "check-packages": "yarn clean && yarn compile && yarn test && yarn lint",
-    "publish-packages": "./scripts/publish",
-    "bootstrap": "yarn install --ignore-engines && yarn lerna bootstrap",
-    "regenerate": "lerna clean --yes && rm -rf ./node_modules && yarn run bootstrap",
-    "regenerate:win": "lerna clean --yes && rd /q /s node_modules && yarn run bootstrap"
+  "name": "progressus",
+  "version": "0.0.1",
+  "dependencies": {
+    "@material-ui/core": "1.5.1",
+    "@material-ui/icons": "3.0.1",
+    "eslint-config-standard": "12.0.0",
+    "eslint-config-standard-react": "7.0.2",
+    "eslint-plugin-import": "2.14.0",
+    "eslint-plugin-node": "7.0.1",
+    "eslint-plugin-promise": "4.0.0",
+    "eslint-plugin-react": "7.11.1",
+    "eslint-plugin-standard": "4.0.0",
+    "firebase": "^5.5.0",
+    "jss": "9.8.7",
+    "next": "6.1.1",
+    "prop-types": "15.6.2",
+    "react": "16.4.2",
+    "react-dom": "16.4.2",
+    "react-jss": "8.6.1",
+    "react-redux": "5.0.7",
+    "react-text-mask": "5.4.3",
+    "redux": "4.0.0",
+    "redux-thunk": "2.3.0",
+    "sweetalert": "2.1.0"
+  },
+  "author": {
+    "name": "William Penagos",
+    "email": "billalpeza@gmail.com"
   },
   "devDependencies": {
-    "lerna": "3.1.4",
-    "minimist": "^1.2.0"
+    "babel-core": "6.26.3",
+    "babel-jest": "23.4.2",
+    "babel-plugin-root-import": "^6.1.0",
+    "babel-plugin-transform-class-properties": "6.24.1",
+    "babel-plugin-transform-decorators": "6.24.1",
+    "babel-plugin-transform-decorators-legacy": "1.3.5",
+    "babel-plugin-transform-es2015-modules-commonjs": "6.26.2",
+    "babel-preset-env": "1.7.0",
+    "babel-preset-react": "6.24.1",
+    "cross-env": "5.2.0",
+    "enzyme": "3.4.3",
+    "enzyme-adapter-react-16": "1.2.0",
+    "express": "^4.16.3",
+    "http": "^0.0.0",
+    "jest": "23.5.0",
+    "next-routes": "^1.4.2",
+    "react-addons-test-utils": "15.6.2",
+    "react-test-renderer": "16.4.2",
+    "redux-devtools-extension": "2.13.5",
+    "redux-logger": "3.0.6",
+    "regenerator-runtime": "0.12.1",
+    "url": "^0.11.0"
+  },
+  "scripts": {
+    "babel:test": "cross-env BABEL=test node ./babel.js",
+    "babel:dev": "cross-env BABEL=dev node ./babel.js",
+    "babel:prod": "cross-env BABEL=prod node ./babel.js",
+    "test": "npm run babel:test && jest",
+    "dev": "npm run babel:dev && next",
+    "build": "npm run babel:prod && next build",
+    "start": "npm run babel:prod && next start",
+    "export": "next build && next export"
   }
 }
