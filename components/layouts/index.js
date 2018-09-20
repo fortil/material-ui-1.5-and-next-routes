@@ -30,7 +30,7 @@ class LayoutLayout extends React.Component {
     this.setState({ anchorEl: null })
   }
   componentWillReceiveProps({ showLoading }) {
-    if (showLoading === false || showLoading === truw) {
+    if (showLoading === false || showLoading === true) {
       this.setState({ showLoading })
     }
   }

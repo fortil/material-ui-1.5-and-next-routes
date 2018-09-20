@@ -7,7 +7,7 @@ import withUserCheck from '#/components/withUserCheck'
 import { SESSIONS as SESSIONS_INITIAL_STATE, ERROR as ERROR_INITIAL_STATE } from '#/api/redux/states'
 import swal from 'sweetalert'
 
-const collection = 'consultant'
+const collection = 'doctor'
 
 @withUserCheck
 class Sessions extends Component {

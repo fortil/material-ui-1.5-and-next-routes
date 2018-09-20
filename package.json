@@ -58,10 +58,11 @@
     "babel:test": "cross-env BABEL=test node ./babel.js",
     "babel:dev": "cross-env BABEL=dev node ./babel.js",
     "babel:prod": "cross-env BABEL=prod node ./babel.js",
-    "test": "npm run babel:test && jest",
-    "dev": "npm run babel:dev && next",
-    "build": "npm run babel:prod && next build",
-    "start": "npm run babel:prod && next start",
-    "export": "next build && next export"
+    "test": "yarn run babel:test && jest",
+    "dev": "yarn run babel:dev && next -p 3001",
+    "build": "yarn run babel:prod && next build",
+    "start": "yarn run babel:prod && next start",
+    "export": "next build && next export",
+    "deploy": "rm -rf .next && rm -rf out && yarn run export && firebase deploy"
   }
 }

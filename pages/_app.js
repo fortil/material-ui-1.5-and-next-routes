@@ -30,15 +30,16 @@ class MyApp extends App {
     const { Component, reduxStore, ...pageProps } = this.props
     const { router } = pageProps
     let View = <Component pageContext={this.pageContext} {...pageProps} />
-
-    if (['/doctor', '/consultant', '/doctor/sign', '/consultant/sign'].includes(router.pathname)) {
-      View = (<LoginLayout  reduxStore={reduxStore} pageContext={this.pageContext} {...pageProps}>
-        <Component reduxStore={reduxStore} pageContext={this.pageContext} {...pageProps} />
-      </LoginLayout>)
-    } else {
-      View = (<Layout reduxStore={reduxStore} pageContext={this.pageContext} {...pageProps} >
-        <Component reduxStore={reduxStore} pageContext={this.pageContext} {...pageProps} />
-      </Layout>)
+    if (this.props.pageProps.statusCode !== 404) {
+      if (['/doctor', '/consultant', '/doctor/sign', '/consultant/sign', '/'].includes(router.pathname)) {
+        View = (<LoginLayout  reduxStore={reduxStore} pageContext={this.pageContext} {...pageProps}>
+          <Component reduxStore={reduxStore} pageContext={this.pageContext} {...pageProps} />
+        </LoginLayout>)
+      } else {
+        View = (<Layout reduxStore={reduxStore} pageContext={this.pageContext} {...pageProps} >
+          <Component reduxStore={reduxStore} pageContext={this.pageContext} {...pageProps} />
+        </Layout>)
+      }
     }
 
     return (

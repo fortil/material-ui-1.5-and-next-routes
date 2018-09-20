@@ -24,7 +24,7 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
           />
           <style>{`
-          #__next { position: absolute; top: 0; bottom: 0; left: 0; right: 0; } html, body { height: 100%}
+          #__next { position: absolute; top: 0; bottom: 0; left: 0; right: 0; } html, body { height: 100% }
           `}</style>
         </Head>
         <body>

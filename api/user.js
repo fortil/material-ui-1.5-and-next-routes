@@ -1,5 +1,5 @@
 import { auth, firestore } from '#/lib/firebase'
-import { setError, setUser, setLoading } from './redux/actions'
+import { setError, setUser, setLoading, setSessions } from './redux/actions'
 import MyError from '#/utils/error'
 import db from '#/lib/db'
 
@@ -26,6 +26,30 @@ export const dataUser = [
   'complete',
   'lastname'
 ]
+
+export const fillDataUser = (user, collection) => async dispatch => {
+  try {
+    dispatch(setLoading(true))
+    const userFirebase = auth.currentUser
+    const usr = sanitizeUserFields(Object.assign({}, userFirebase, user, { complete: true }))
+    await firestore.collection(collection).doc(userFirebase.uid).update(usr)
+    db.set('user', usr)
+    dispatch(setUser(usr))
+  } catch (err) {
+    const error = new MyError(err)
+    dispatch(setError(error, 'fillDataUser'))
+    dispatch(setLoading(false))
+  }
+}
+export const getUserAuth = collection => dispatch => {
+  auth.onAuthStateChanged(async userFirebase => {
+    if (userFirebase) {
+      const userDb = await firestore.collection(collection).doc(userFirebase.uid).get().then(snap => snap.data())
+      db.set('user', userDb)
+      dispatch(setUser(userDb))
+    }
+  })
+}
 
 export const login = (email, pwd, collection) => async dispatch => {
   try {

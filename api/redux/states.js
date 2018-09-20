@@ -12,3 +12,7 @@ export const ERROR = {
 export const LOADING = {
   show: false
 }
+
+export const SESSIONS = {
+  sessions: []
+}

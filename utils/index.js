@@ -9,6 +9,12 @@ export function dateUtc(date = new Date()) {
   }
 }
 
+export const validatePhone = phone => /\(\+\d{2}\)\(\d{3}\)\d{3}-\d{1,4}/.test(phone) || /\d{9,12}/.test(phone)
+
+export const validateDate = date => /\d{4}-\d{2}-\d{2}/.test(date)
+
+export const validateWords = l => value => typeof value === 'string' && value.length >= l
+
 export function validateEmail(email) {
   const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
   return re.test(String(email).toLowerCase())
@@ -74,6 +80,8 @@ export const dictorionary ={
   user: {
     'address': 'Dirección',
     'lastSession': 'Última sessión',
+    'city': 'Ciudad',
+    'country': 'País',
     'name': 'Nombre',
     'birthDate': 'Fecha de nacimiento',
     'emailVerified': 'Email verificado',
@@ -90,11 +98,36 @@ export const dictorionary ={
     'direction': 'Dirección',
     'uid': 'UID',
     'ocupy': 'Ocupación',
+    'occupy': 'Ocupación',
     'photoURL': 'Foto',
     'complete': 'Completo',
     'lastname': 'Apellido',
   }
 }
+
+export const fieldsAllowUser = [
+  'address',
+  'city',
+  'country',
+  'name',
+  'lastname',
+  'birthDate',
+  'comments',
+  'educationLevel',
+  'gender',
+  'ocupy',
+  'occupy',
+  'photoURL',
+]
+
 export const convertKeysToValues = (key, type = 'user') => {
   return dictorionary[type][key]
 }
+
+export const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1)
+export const getOtherCollection = collection => {
+  const dic = { consultant: 'doctor', doctor: 'consultant' }
+  return dic[collection]
+}
+
+export const guid = function b(a){return a?(a^Math.random()*16>>a/4).toString(16):([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g,b)}

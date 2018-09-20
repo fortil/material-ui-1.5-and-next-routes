@@ -2,6 +2,7 @@ import {
   USER as INITIAL_STATE_USER,
   ERROR as INITIAL_STATE_ERROR,
   LOADING as INITIAL_STATE_LOADING,
+  SESSIONS as INITIAL_STATE_SESSIONS,
 } from './states'
 import {
   SET_USER,
@@ -9,6 +10,7 @@ import {
   REMOVE_LOADING,
   SET_ERROR,
   REMOVE_ERROR,
+  SET_SESSIONS,
 } from './actionsType'
 import { combineReducers } from 'redux'
 
@@ -18,6 +20,18 @@ const USER = (state = INITIAL_STATE_USER, { type, user }) => {
       return {
         ...state,
         user
+      }
+    default:
+      return state
+  }
+}
+
+const SESSIONS = (state = INITIAL_STATE_SESSIONS, { type, data }) => {
+  switch (type) {
+    case SET_SESSIONS:
+      return {
+        ...state,
+        sessions: data
       }
     default:
       return state
@@ -67,4 +81,5 @@ export default combineReducers({
   USER,
   ERROR,
   LOADING,
+  SESSIONS,
 })

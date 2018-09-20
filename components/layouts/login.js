@@ -4,9 +4,15 @@ import { withStyles } from '@material-ui/core'
 import Loading from './loading'
 import { layout as styles } from '#/components/styles/layout'
 import { connect } from 'react-redux'
+import { getUserAuth } from '#/api/user'
 
 class LoginLayout extends Component {
   state = { showLoading: false }
+
+  componentDidMount() {
+    const collection = this.props.router.pathname.replace('/', '').split('/')[0]
+    this.props.actions.getUserAuth(collection)
+  }
 
   componentWillReceiveProps({ showLoading }) {
     if (showLoading === false || showLoading === true) {
@@ -32,8 +38,10 @@ class LoginLayout extends Component {
   }
 }
 
+const mapDispatchToProps = dispatch => ({ actions: { getUserAuth: collection => dispatch(getUserAuth(collection)) }})
+
 const mapStateToProps = ({LOADING = { show: false }}) => ({
   showLoading: LOADING.show
 })
 
-export default connect(mapStateToProps)(withStyles(styles, { name: 'LoginLayout' })(LoginLayout))
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles, { name: 'LoginLayout' })(LoginLayout))

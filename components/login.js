@@ -23,8 +23,8 @@ import Link from 'next/link'
 class Login extends Component {
   state = {
     showPassword: false,
-    password: 'wp0742226',
-    user: 'billalpeza@gmail.com'
+    password: { value: 'wp0742226', error: false },
+    user: { value: 'billalpeza@gmail.com', error: false }
   }
 
   handleChange = prop => event => {
@@ -32,7 +32,7 @@ class Login extends Component {
     if (this.props.change) {
       this.props.change({ prop, value })
     }
-    this.setState({ [prop]: event.target.value })
+    this.setState({ [prop]: Object.assign({}, { value: event.target.value }) })
   }
 
   handleClickShowPassword = () => {
@@ -45,8 +45,8 @@ class Login extends Component {
 
   handleSubmit = () => {
     this.props.login({
-      user: this.state.user,
-      password: this.state.password
+      user: this.state.user.value,
+      password: this.state.password.value
     })
   }
 
@@ -69,8 +69,9 @@ class Login extends Component {
                       label="Usuario"
                       className={classNames(classes.margin, classes.textField)}
                       onChange={this.handleChange('user')}
-                      value={this.state.user}
+                      value={this.state.user.value}
                       fullWidth={true}
+                      error={this.state.user.error}
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -81,9 +82,10 @@ class Login extends Component {
                       <Input
                         id="password"
                         type={this.state.showPassword ? 'text' : 'password'}
-                        value={this.state.password}
+                        value={this.state.password.value}
                         onChange={this.handleChange('password')}
                         fullWidth={true}
+                        error={this.state.password.error}
                         endAdornment={
                           <InputAdornment position="start">
                             <IconButton

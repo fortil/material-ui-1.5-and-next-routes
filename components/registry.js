@@ -9,32 +9,33 @@ import TextField from '@material-ui/core/TextField'
 import Input from '@material-ui/core/Input'
 import InputLabel from '@material-ui/core/InputLabel'
 import Button from '@material-ui/core/Button'
-import { validation } from '#/utils'
+import { validateWords, validateEmail, validatePhone, validateDate } from '#/utils'
 import Typography from '@material-ui/core/Typography'
 import Select from '@material-ui/core/Select'
 import FormControl from '@material-ui/core/FormControl'
 import MenuItem from '@material-ui/core/MenuItem'
 import { withStyles } from '@material-ui/core'
 import styles from './styles/sign'
+import swal from 'sweetalert'
 import Link from 'next/link'
 
 const fields = [
-  { md: 12, type: 'text', name: 'name', label: 'Nombres', error: false, value: 'William', validate: [] },
-  { md: 12, type: 'text', name: 'lastname', label: 'Apellidos', error: false, value: 'Penagos', validate: [] },
-  { md: 12, type: 'email', name: 'email', label: 'Email', error: false, value: 'billalpeza@gmail.com', validate: [] },
-  { md: 12, type: 'phone', name: 'phone', label: 'Número de celular', error: false, value: '573185213907', validate: [] },
-  { md: 6, type: 'date', name: 'birthDate', label: 'Fecha de Nacimiento', error: false, value: '', validate: [] },
+  { md: 12, type: 'text', name: 'name', label: 'Nombres', error: false, value: 'William', validate: [validateWords(4)] },
+  { md: 12, type: 'text', name: 'lastname', label: 'Apellidos', error: false, value: 'Penagos', validate: [validateWords(4)] },
+  { md: 12, type: 'email', name: 'email', label: 'Email', error: false, value: 'billalpeza@gmail.com', validate: [validateEmail] },
+  { md: 12, type: 'phone', name: 'phone', label: 'Número de celular', error: false, value: '573185213907', validate: [validatePhone] },
+  { md: 6, type: 'date', name: 'birthDate', label: 'Fecha de Nacimiento', error: false, value: '1988-11-24', validate: [validateDate] },
   { md: 6, type: 'select', name: 'gender', label: 'Genero', error: false, value: 'Femenino', choices: [{ name: 'Femenino', label: 'Femenino' }, { name: 'Masculino', label: 'Masculino' }], validate: [] },
   { md: 6, type: 'text', name: 'country', label: 'País', error: false, value: 'Colombia', validate: [] },
   { md: 6, type: 'text', name: 'city', label: 'Ciudad', error: false, value: 'Cali', validate: [] },
   { md: 6, type: 'select', name: 'idType', label: 'Tipo de identificación', error: false, value: 'CC', choices: [{ name: 'CC', label: 'Cédula de ciudadanía' }, { name: 'CE', label: 'Cédula de extrajería' }], validate: [] },
-  { md: 6, type: 'text', name: 'idNumber', label: 'Número de identificación', error: false, value: '1107052306', validate: [] },
+  { md: 6, type: 'text', name: 'idNumber', label: 'Número de identificación', error: false, value: '1107052306', validate: [validateWords(6)] },
   { md: 6, type: 'text', name: 'ocupy', label: 'Ocupación', error: false, value: 'Ingeniero de Sistemas', validate: [] },
   { md: 6, type: 'select', name: 'heLivesWith', label: 'Con quién vive', error: false, value: 'Solo', choices: [{ name: 'Solo', label: 'Solo' }, { name: 'Familiares', label: 'Familiares' }], validate: [] },
   { md: 12, type: 'text', name: 'direction', label: 'Dirección', error: false, value: 'Carrera 41 C # 55 B 44', validate: [] },
-  { md: 12, type: 'phone', name: 'cellphoneEmergency', label: 'Número de celular contacto de emergencia', error: false, value: '573185213907', validate: [] },
+  { md: 12, type: 'phone', name: 'cellphoneEmergency', label: 'Número de celular contacto de emergencia', error: false, value: '573185213907', validate: [validatePhone] },
   { md: 12, type: 'select', name: 'educationLevel', label: 'Nivel educativo', error: false, value: 'Postgrado', choices: [{ name: 'Primaria', label: 'Primaria' }, { name: 'Secundaria', label: 'Secundaria' }, { name: 'Pregrado', label: 'Pregrado' }, { name: 'Postgrado', label: 'Postgrado' }], validate: [] },
-  { md: 12, type: 'text', name: 'eps', label: 'Cuál es tu EPS/Seguro Social', error: false, value: 'SURA', validate: [] },
+  { md: 12, type: 'text', name: 'eps', label: 'Cuál es tu EPS/Seguro Social', error: false, value: 'SURA', validate: [validateWords(4)] },
 ]
 
 class RegistryComponent extends Component {
@@ -44,6 +45,27 @@ class RegistryComponent extends Component {
     this.state = Object.assign(
       ...fields.map(field => ({ [field.name]: Object.assign(field, { value: props[field.name] || field.value }) }))
     )
+  }
+
+  updateValues = props => {
+    const values = {}
+    fields.forEach(field => {
+      if (props[field.name]) {
+        values[field.name] = Object.assign({}, this.state[field.name], { value: props[field.name] })
+      }
+    })
+    if (Object.keys(values).length) {
+      this.setState(values)
+    }
+  }
+  componentWillReceiveProps(props) {
+    if (props) {
+      this.updateValues(props)
+    }
+  }
+
+  componentDidMount() {
+    this.updateValues(this.props)
   }
 
   validateError = (field, value) => {
@@ -57,17 +79,40 @@ class RegistryComponent extends Component {
   handleChange = prop => ({ target }) => {
     const value = target.value
     const field = this.state[prop]
+    if (this.props.change) {
+      this.props.change(prop, value)
+    }
     this.setState({
-      [prop]: Object.assign({}, field, { value, error: validateError(field, value) })
+      [prop]: Object.assign({}, field, { value, error: this.validateError(field, value) })
     })
   }
 
   handleSubmit = () => {
-    console.log('holaaaa submit')
+    const errors = []
+    const values = Object.assign(
+      {},
+      ...fields.map((field, i) => {
+        const key = field.name
+        const obj = this.state[field.name]
+        if (obj.error) {
+          errors.push(obj.label)
+        }
+        if (this.validateError(obj, obj.value)) {
+          errors.push(obj.label)
+          this.setState({ [key]: Object.assign({}, obj, { error: true }) })
+        }
+        return { [key]: obj.value }
+      })
+    )
+    if (errors.length) {
+      swal('Falta rellenar campos', `Todos los campos son obligatorios, falta: ${errors.join(', ')}`, 'warning')
+    } else {
+      this.props.submit(values)
+    }
   }
 
   render() {
-    const { classes, collection } = this.props
+    const { classes } = this.props
 
     return (
       <Grid container direction="row" alignItems="center" justify="center">
@@ -88,6 +133,7 @@ class RegistryComponent extends Component {
                       onChange={this.handleChange(field.name)}
                       type="date"
                       value={this.state[field.name].value}
+                      error={this.state[field.name].error}
                       // className={classNames(classes.margin, classes.textField)}
                       InputLabelProps={{
                         shrink: true,
@@ -97,6 +143,7 @@ class RegistryComponent extends Component {
                   case 'text':
                     input = <FormControl className={classes.formControl}><TextField
                       label={field.label}
+                      error={this.state[field.name].error}
                       // className={classNames(classes.margin, classes.textField)}
                       onChange={this.handleChange(field.name)}
                       value={this.state[field.name].value}
@@ -109,6 +156,7 @@ class RegistryComponent extends Component {
                       <Input
                         value={this.state[field.name].value}
                         onChange={this.handleChange(field.name)}
+                        error={this.state[field.name].error}
                         id={field.name}
                         inputComponent={TextMaskCustom}
                       />
@@ -120,6 +168,7 @@ class RegistryComponent extends Component {
                       <Select
                         value={this.state[field.name].value}
                         onChange={this.handleChange(field.name)}
+                        error={this.state[field.name].error}
                         inputProps={{
                           name: field.name,
                           id: field.name,
@@ -144,8 +193,8 @@ class RegistryComponent extends Component {
               })
             }
             <Grid item md={12} className={classes.button}>
-              <Button variant="contained" color="primary"  onClick={this.handleSubmit}>
-                Registrar
+              <Button variant="contained" color="primary" onClick={this.handleSubmit}>
+                {this.props.buttonText}
               </Button>
             </Grid>
           </Grid>
@@ -158,14 +207,15 @@ class RegistryComponent extends Component {
 
 RegistryComponent.propTypes = {
   image: PropTypes.node,
-  register: PropTypes.func,
+  submit: PropTypes.func,
   change: PropTypes.func,
   classes: PropTypes.object.isRequired,
   collection: PropTypes.string.isRequired
 }
 
 RegistryComponent.defaultProps = {
-  register: (...args) => console.log(...args),
+  buttonText: 'Registrar',
+  submit: (...args) => console.log(...args),
   image: <img src={'/static/logo-type.png'} alt="PROGRESUS" style={{ width: '100%' }} />
 }
 
