@@ -22,11 +22,11 @@ class SignInComponent extends Component {
   samePwd = to => value => this.state[to].value === value
 
   fields = [
-    { type: 'text', name: 'name', label: 'Nombres', error: false, value: 'William' },
-    { type: 'text', name: 'lastname', label: 'Apellidos', error: false, value: 'Penagos' },
-    { type: 'email', name: 'email', label: 'Email', error: false, value: 'billalpeza@gmail.com', validate: [ validateEmail ] },
-    { type: 'password', name: 'password', label: 'Contraseña', error: false, value: 'wp0742226', validate: [ this.samePwd('passwordconfirmed') ] },
-    { type: 'password', name: 'passwordconfirmed', label: 'Confirmar contraseña', error: false, value: 'wp0742226', validate: [ this.samePwd('password') ] },
+    { type: 'text', name: 'name', label: 'Nombres', error: false, value: '' },
+    { type: 'text', name: 'lastname', label: 'Apellidos', error: false, value: '' },
+    { type: 'email', name: 'email', label: 'Email', error: false, value: '', validate: [ validateEmail ] },
+    { type: 'password', name: 'password', label: 'Contraseña', error: false, value: '', validate: [ this.samePwd('passwordconfirmed') ] },
+    { type: 'password', name: 'passwordconfirmed', label: 'Confirmar contraseña', error: false, value: '', validate: [ this.samePwd('password') ] },
     { type: 'checkbox', name: 'terms', label: 'Términos y condiciones', value: false, error: true },
   ]
 

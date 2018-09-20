@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 import Router from 'next/router'
 import swal from 'sweetalert'
 
-const collection = 'consultant'
+const collection = 'doctor'
 class Sign extends Component {
   static collection = collection
 

@@ -19,9 +19,6 @@ class Profile extends Component {
   }
 
   componentWillReceiveProps({ user, error }) {
-    if (user && Object.keys(user).length && user.emailVerified && user.complete) {
-      Router.push(`/${collection}/sessions`)
-    }
     if (error.error && error.show) {
       swal(error.code, error.message, 'warning')
     }

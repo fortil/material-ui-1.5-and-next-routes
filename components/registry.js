@@ -20,22 +20,22 @@ import swal from 'sweetalert'
 import Link from 'next/link'
 
 const fields = [
-  { md: 12, type: 'text', name: 'name', label: 'Nombres', error: false, value: 'William', validate: [validateWords(4)] },
-  { md: 12, type: 'text', name: 'lastname', label: 'Apellidos', error: false, value: 'Penagos', validate: [validateWords(4)] },
-  { md: 12, type: 'email', name: 'email', label: 'Email', error: false, value: 'billalpeza@gmail.com', validate: [validateEmail] },
-  { md: 12, type: 'phone', name: 'phone', label: 'Número de celular', error: false, value: '573185213907', validate: [validatePhone] },
-  { md: 6, type: 'date', name: 'birthDate', label: 'Fecha de Nacimiento', error: false, value: '1988-11-24', validate: [validateDate] },
-  { md: 6, type: 'select', name: 'gender', label: 'Genero', error: false, value: 'Femenino', choices: [{ name: 'Femenino', label: 'Femenino' }, { name: 'Masculino', label: 'Masculino' }], validate: [] },
-  { md: 6, type: 'text', name: 'country', label: 'País', error: false, value: 'Colombia', validate: [] },
-  { md: 6, type: 'text', name: 'city', label: 'Ciudad', error: false, value: 'Cali', validate: [] },
-  { md: 6, type: 'select', name: 'idType', label: 'Tipo de identificación', error: false, value: 'CC', choices: [{ name: 'CC', label: 'Cédula de ciudadanía' }, { name: 'CE', label: 'Cédula de extrajería' }], validate: [] },
-  { md: 6, type: 'text', name: 'idNumber', label: 'Número de identificación', error: false, value: '1107052306', validate: [validateWords(6)] },
-  { md: 6, type: 'text', name: 'ocupy', label: 'Ocupación', error: false, value: 'Ingeniero de Sistemas', validate: [] },
-  { md: 6, type: 'select', name: 'heLivesWith', label: 'Con quién vive', error: false, value: 'Solo', choices: [{ name: 'Solo', label: 'Solo' }, { name: 'Familiares', label: 'Familiares' }], validate: [] },
-  { md: 12, type: 'text', name: 'direction', label: 'Dirección', error: false, value: 'Carrera 41 C # 55 B 44', validate: [] },
-  { md: 12, type: 'phone', name: 'cellphoneEmergency', label: 'Número de celular contacto de emergencia', error: false, value: '573185213907', validate: [validatePhone] },
-  { md: 12, type: 'select', name: 'educationLevel', label: 'Nivel educativo', error: false, value: 'Postgrado', choices: [{ name: 'Primaria', label: 'Primaria' }, { name: 'Secundaria', label: 'Secundaria' }, { name: 'Pregrado', label: 'Pregrado' }, { name: 'Postgrado', label: 'Postgrado' }], validate: [] },
-  { md: 12, type: 'text', name: 'eps', label: 'Cuál es tu EPS/Seguro Social', error: false, value: 'SURA', validate: [validateWords(4)] },
+  { md: 12, type: 'text', name: 'name', label: 'Nombres', error: false, value: '', validate: [validateWords(4)] },
+  { md: 12, type: 'text', name: 'lastname', label: 'Apellidos', error: false, value: '', validate: [validateWords(4)] },
+  { md: 12, type: 'email', name: 'email', label: 'Email', error: false, value: '', validate: [validateEmail] },
+  { md: 12, type: 'phone', name: 'phone', label: 'Número de celular', error: false, value: '', validate: [validatePhone] },
+  { md: 6, type: 'date', name: 'birthDate', label: 'Fecha de Nacimiento', error: false, value: '', validate: [validateDate] },
+  { md: 6, type: 'select', name: 'gender', label: 'Genero', error: false, value: '', choices: [{ name: 'Femenino', label: 'Femenino' }, { name: 'Masculino', label: 'Masculino' }], validate: [] },
+  { md: 6, type: 'text', name: 'country', label: 'País', error: false, value: '', validate: [] },
+  { md: 6, type: 'text', name: 'city', label: 'Ciudad', error: false, value: '', validate: [] },
+  { md: 6, type: 'select', name: 'idType', label: 'Tipo de identificación', error: false, value: '', choices: [{ name: 'CC', label: 'Cédula de ciudadanía' }, { name: 'CE', label: 'Cédula de extrajería' }], validate: [] },
+  { md: 6, type: 'text', name: 'idNumber', label: 'Número de identificación', error: false, value: '', validate: [validateWords(6)] },
+  { md: 6, type: 'text', name: 'ocupy', label: 'Ocupación', error: false, value: '', validate: [] },
+  { md: 6, type: 'select', name: 'heLivesWith', label: 'Con quién vive', error: false, value: '', choices: [{ name: 'Solo', label: 'Solo' }, { name: 'Familiares', label: 'Familiares' }], validate: [] },
+  { md: 12, type: 'text', name: 'direction', label: 'Dirección', error: false, value: '', validate: [] },
+  { md: 12, type: 'phone', name: 'cellphoneEmergency', label: 'Número de celular contacto de emergencia', error: false, value: '', validate: [validatePhone] },
+  { md: 12, type: 'select', name: 'educationLevel', label: 'Nivel educativo', error: false, value: '', choices: [{ name: 'Primaria', label: 'Primaria' }, { name: 'Secundaria', label: 'Secundaria' }, { name: 'Pregrado', label: 'Pregrado' }, { name: 'Postgrado', label: 'Postgrado' }], validate: [] },
+  { md: 12, type: 'text', name: 'eps', label: 'Cuál es tu EPS/Seguro Social', error: false, value: '', validate: [validateWords(4)] },
 ]
 
 class RegistryComponent extends Component {

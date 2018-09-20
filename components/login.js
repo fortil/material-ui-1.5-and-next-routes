@@ -23,8 +23,8 @@ import Link from 'next/link'
 class Login extends Component {
   state = {
     showPassword: false,
-    password: { value: 'wp0742226', error: false },
-    user: { value: 'billalpeza@gmail.com', error: false }
+    password: { value: '', error: false },
+    user: { value: '', error: false }
   }
 
   handleChange = prop => event => {
