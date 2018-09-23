@@ -144,7 +144,7 @@ class SignInComponent extends Component {
               })}
               <Grid item xs={12} className={classes.inputContainer}>
                 <InputLabel htmlFor={'password-strong'}>Fuerza de la contraseña</InputLabel>
-                <LinearProgress variant="determinate" id="password-strong" value={this.state.linearProgress} />
+                <LinearProgress variant="determinate" color={this.state.linearProgress < 50 ? 'primary' : 'secondary'} id="password-strong" value={this.state.linearProgress} />
               </Grid>
               <Grid item xs={12} className={classes.buttonContainer}>
                 <Button id="register" variant="contained" color="primary" className={classes.button} onClick={this.handleSubmit}>
