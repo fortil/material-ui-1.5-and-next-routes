@@ -9,6 +9,29 @@ export function dateUtc(date = new Date()) {
   }
 }
 
+export const validateStrongPWD = pwd => {
+  let level = 0
+  if (/[a-z]/.test(pwd)) {
+    level += 10
+  }
+  if (/[A-Z]/.test(pwd)) {
+    level += 10
+  }
+  if (/[0-9]/.test(pwd)) {
+    level += 20
+  }
+  if (pwd.length > 5) {
+    level += 20
+  }
+  if (pwd.length > 8) {
+    level += 20
+  }
+  if (/[$&+,:;=?@#|'<>.^*()%!-]/.test(pwd)) {
+    level += 20
+  }
+  return level
+}
+
 export const validatePhone = phone => /\(\+\d{2}\)\(\d{3}\)\d{3}-\d{1,4}/.test(phone) || /\d{9,12}/.test(phone)
 
 export const validateDate = date => /\d{4}-\d{2}-\d{2}/.test(date)

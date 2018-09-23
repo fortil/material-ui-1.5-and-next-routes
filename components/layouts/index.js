@@ -11,9 +11,11 @@ import MenuItem from '@material-ui/core/MenuItem'
 import Typography from '@material-ui/core/Typography'
 import { layout as styles, drawerWidth } from '../styles/layout'
 import { USER as INITIAL_STATE_USER } from '#/api/redux/states'
+import { logout } from '#/api/user'
 import Drawer from './drawer'
 import Loading from './loading'
 import { connect } from 'react-redux'
+import Router from 'next/router'
 
 class LayoutLayout extends React.Component {
   state = {
@@ -26,8 +28,13 @@ class LayoutLayout extends React.Component {
     this.setState({ anchorEl: event.currentTarget })
   }
 
-  handleClose = () => {
+  handleClose = type => () => {
     this.setState({ anchorEl: null })
+    if (type === 'out') {
+      this.props.actions.out(() => Router.push(`/${this.props.collection}`))
+    } else if (type === 'profile') {
+      Router.push(`/${this.props.collection}/profile`)
+    }
   }
   componentWillReceiveProps({ showLoading }) {
     if (showLoading === false || showLoading === true) {
@@ -77,8 +84,8 @@ class LayoutLayout extends React.Component {
                   open={open}
                   onClose={this.handleClose}
                 >
-                  <MenuItem onClick={this.handleClose}>Perfil</MenuItem>
-                  <MenuItem onClick={this.handleClose}>Salir</MenuItem>
+                  <MenuItem onClick={this.handleClose('profile')}>Perfil</MenuItem>
+                  <MenuItem onClick={this.handleClose('out')}>Salir</MenuItem>
                 </Menu>
               </div>
             </Toolbar>
@@ -99,9 +106,15 @@ LayoutLayout.propTypes = {
   children: PropTypes.node.isRequired
 }
 
+const dispatchToProps = dispatch => ({
+  actions: {
+    out: cb => dispatch(logout(cb))
+  }
+})
+
 const mapStateToProps = ({ LOADING = { show: false }, USER = INITIAL_STATE_USER }) => ({
   showLoading: LOADING.show,
   user: USER.user,
 })
 
-export default connect(mapStateToProps)(withStyles(styles, { name: 'LayoutStyle' })(LayoutLayout))
+export default connect(mapStateToProps, dispatchToProps)(withStyles(styles, { name: 'LayoutStyle' })(LayoutLayout))

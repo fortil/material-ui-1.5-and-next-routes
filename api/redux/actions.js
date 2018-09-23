@@ -5,12 +5,19 @@ import {
   REMOVE_ERROR,
   REMOVE_LOADING,
   SET_SESSIONS,
+  REMOVE_USER,
 } from './actionsType'
 
 export function setUser(user) {
   return {
     type: SET_USER,
     user
+  }
+}
+
+export function removeUser() {
+  return {
+    type: REMOVE_USER
   }
 }
 

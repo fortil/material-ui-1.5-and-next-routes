@@ -7,8 +7,9 @@ import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
+import InputLabel from '@material-ui/core/InputLabel'
 import Button from '@material-ui/core/Button'
-import { validateEmail } from '#/utils'
+import { validateEmail, validateStrongPWD } from '#/utils'
 import FormControl from '@material-ui/core/FormControl'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import RadioGroup from '@material-ui/core/RadioGroup'
@@ -17,21 +18,26 @@ import { withStyles } from '@material-ui/core'
 import styles from './styles/sign'
 import Link from 'next/link'
 import swl from 'sweetalert'
+import LinearProgress from '#/components/utils/linear_progress'
 
 class SignInComponent extends Component {
   samePwd = to => value => this.state[to].value === value
 
+  levelStrong = value => {
+    this.setState({ linearProgress: validateStrongPWD(value) })
+  }
+  
   fields = [
     { type: 'text', name: 'name', label: 'Nombres', error: false, value: '' },
     { type: 'text', name: 'lastname', label: 'Apellidos', error: false, value: '' },
     { type: 'email', name: 'email', label: 'Email', error: false, value: '', validate: [ validateEmail ] },
-    { type: 'password', name: 'password', label: 'Contraseña', error: false, value: '', validate: [ this.samePwd('passwordconfirmed') ] },
+    { type: 'password', name: 'password', label: 'Contraseña', error: false, value: '', validate: [ this.samePwd('passwordconfirmed'), this.levelStrong ] },
     { type: 'password', name: 'passwordconfirmed', label: 'Confirmar contraseña', error: false, value: '', validate: [ this.samePwd('password') ] },
-    { type: 'checkbox', name: 'terms', label: 'Términos y condiciones', value: false, error: true },
+    { type: 'checkbox', name: 'terms', label: 'Términos y condiciones', value: false, error: false },
   ]
 
   state = Object.assign(
-    {},
+    { linearProgress: 0 },
     ...this.fields.map(obj => ({ [obj.name]: obj }))
   )
 
@@ -122,6 +128,9 @@ class SignInComponent extends Component {
                       label={field.label}
                       id={field.name}
                       className={classes.input}
+                      InputProps={field.type === 'checkbox' ? {
+                        disableUnderline: true,
+                      } : {}}
                       InputLabelProps={ field.type === 'checkbox' ? {
                         shrink: true
                       } : {} }
@@ -133,6 +142,10 @@ class SignInComponent extends Component {
                   </Grid>
                 }
               })}
+              <Grid item xs={12} className={classes.inputContainer}>
+                <InputLabel htmlFor={'password-strong'}>Fuerza de la contraseña</InputLabel>
+                <LinearProgress variant="determinate" id="password-strong" value={this.state.linearProgress} />
+              </Grid>
               <Grid item xs={12} className={classes.buttonContainer}>
                 <Button id="register" variant="contained" color="primary" className={classes.button} onClick={this.handleSubmit}>
                   Registrar

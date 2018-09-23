@@ -7,12 +7,20 @@ import { checkIfUserIsAuthenticated } from '#/api/user'
 const withUserCheck = WrappedComponent => {
   const collection = WrappedComponent.collection
   class ComponentWithUserCheck extends Component {
+    state = { goToCheck: null }
     static displayName = wrapDisplayName(WrappedComponent, 'withUserCheck')
 
     static WrappedComponent = WrappedComponent
 
     static propTypes = {
       wrappedComponentRef: PropTypes.func
+    }
+    componentDidMount() {
+      if (process.browser) {
+        const auth = await checkIfUserIsAuthenticated(ctx)
+        const goToCheck = getRoutes(auth, ctx.pathname, collection)
+        this.setState({ goToCheck })
+      }
     }
 
     static getInitialProps = async ctx => {
@@ -30,9 +38,13 @@ const withUserCheck = WrappedComponent => {
 
     render = () => {
       const { wrappedComponentRef, ...restProps } = this.props
+      let goToCheck = restProps.goToCheck
+      if (process.browser) {
+        goToCheck = this.setState.goToCheck
+      }
 
       return (
-        <WrappedComponent {...restProps} ref={wrappedComponentRef} />
+        <WrappedComponent {...restProps} goToCheck={goToCheck} ref={wrappedComponentRef} />
       )
     }
   }

@@ -11,7 +11,9 @@ class LoginLayout extends Component {
 
   componentDidMount() {
     const collection = this.props.router.pathname.replace('/', '').split('/')[0]
-    this.props.actions.getUserAuth(collection)
+    if (['consultant', 'doctor'].includes(collection)) {
+      this.props.actions.getUserAuth(collection)
+    }
   }
 
   componentWillReceiveProps({ showLoading }) {

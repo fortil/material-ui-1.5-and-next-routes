@@ -1,5 +1,5 @@
 import { auth, firestore } from '#/lib/firebase'
-import { setError, setUser, setLoading, setSessions } from './redux/actions'
+import { setError, setUser, removeUser, setLoading, setSessions } from './redux/actions'
 import MyError from '#/utils/error'
 import db from '#/lib/db'
 
@@ -26,6 +26,19 @@ export const dataUser = [
   'complete',
   'lastname'
 ]
+
+export const logout = (cb = (...args) => console.log(...args)) => async dispatch => {
+  try {
+    await auth.signOut()
+    await db.delete('user')
+    dispatch(removeUser())
+    cb()
+  } catch (err) {
+    const error = new MyError(err)
+    dispatch(setError(error, 'logout'))
+    dispatch(setLoading(false))
+  }
+}
 
 export const fillDataUser = (user, collection) => async dispatch => {
   try {

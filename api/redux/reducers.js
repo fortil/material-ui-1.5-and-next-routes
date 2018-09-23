@@ -6,6 +6,7 @@ import {
 } from './states'
 import {
   SET_USER,
+  REMOVE_USER,
   SET_LOADING,
   REMOVE_LOADING,
   SET_ERROR,
@@ -20,6 +21,12 @@ const USER = (state = INITIAL_STATE_USER, { type, user }) => {
       return {
         ...state,
         user
+      }
+    case REMOVE_USER:
+      return {
+        ...state,
+        user: null,
+        error: null
       }
     default:
       return state

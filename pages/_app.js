@@ -29,6 +29,9 @@ class MyApp extends App {
   render() {
     const { Component, reduxStore, ...pageProps } = this.props
     const { router } = pageProps
+    const collection = router.pathname.replace('/', '').split('/')[0]
+    pageProps.collection = collection
+    
     let View = <Component pageContext={this.pageContext} {...pageProps} />
     if (this.props.pageProps.statusCode !== 404) {
       if (['/doctor', '/consultant', '/doctor/sign', '/consultant/sign', '/'].includes(router.pathname)) {
